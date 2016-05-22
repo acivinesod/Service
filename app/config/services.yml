@@ -7,3 +7,13 @@ services:
 #    service_name:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+
+    our_service:
+        class: AppBundle\Service\OurService
+        arguments: [ "%our_param%", "@placeholder_service" ]
+
+
+    placeholder_service:
+        class: AppBundle\Service\PlaceholderService
+        calls:
+          - [ setLogger, ['@logger']]
